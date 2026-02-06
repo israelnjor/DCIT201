@@ -1,37 +1,58 @@
 public class GradeReport {
+   public GradeReport() {
+   }
 
-    public void executeGradeReport(double score) {
-      if(!validateScore(score)) {
-        System.out.println("Ivalid Score");
-        return;
+   public void executeGradeReport(double var1) {
+      if (!this.validateScore(var1)) {
+         System.out.println("Ivalid Score");
+      } else {
+         char var3 = this.calculateLetterGrade(var1);
+         this.displayPerformanceMessage(var3);
       }
-      char grade = calculateLetterGrade(score);
+   }
 
-      displayPerformanceMessage(grade);
-    }
+   private boolean validateScore(double var1) {
+      return var1 >= 0.0 && var1 <= 100.0;
+   }
 
-    private boolean validateScore(double score) {
-        return score >= 0 && score <= 100;
-    }
+   private char calculateLetterGrade(double var1) {
+      if (var1 >= 90.0) {
+         return 'A';
+      } else if (var1 >= 80.0) {
+         return 'B';
+      } else if (var1 >= 70.0) {
+         return 'C';
+      } else if (var1 >= 60.0) {
+         return 'D';
+      } else {
+         return (char)(var1 >= 50.0 ? 'E' : 'F');
+      }
+   }
 
-    private char calculateLetterGrade(double score) {
-        if (score >= 90) return 'A';
-        else if (score >= 80) return 'B';
-        else if (score >= 70) return 'C';
-        else if (score >= 60) return 'D';
-        else if (score >= 50) return 'E';
-        else return 'F';
-    }
+   private void displayPerformanceMessage(char var1) {
+      switch (var1) {
+         case 'A':
+            System.out.println("Excellent!");
+            break;
+         case 'B':
+            System.out.println("Good job!");
+            break;
+         case 'C':
+            System.out.println("Fair effort!");
+            break;
+         case 'D':
+            System.out.println("Needs improvement");
+            break;
+         case 'E':
+            System.out.println("Poor performance!");
+            break;
+         case 'F':
+            System.out.println("Failing. Try harder!");
+            break;
+         default:
+            System.out.println("Unknown grade.");
+      }
 
-    private void displayPerformanceMessage(char grade) {
-        switch (grade) {
-            case 'A' : System.out.println("Excellent!"); break;
-            case 'B': System.out.println("Good job!"); break;
-            case 'C': System.out.println("Fair effort!"); break;
-            case 'D': System.out.println("Needs improvement"); break;
-            case 'F': System.out.println("Failing. Try harder!"); break;
-            default: System.out.println("Unknown grade."); break;
-        }
-    }
-}
+   }
     
+}
